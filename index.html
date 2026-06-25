@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Sistem Komputer & Komponen Motherboard</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --panel-bg: #131a2b;
+            --accent-blue: #00d2ff;
+            --accent-gold: #ffca28;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --glow-white: 0 0 15px rgba(255, 255, 255, 0.25);
+            --glow-blue: 0 0 20px rgba(0, 210, 255, 0.4);
+            --glow-gold: 0 0 20px rgba(255, 202, 40, 0.4);
+            --border-style: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        /* Container & Boundary Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Boundary wrapper untuk memberikan kesan elegan & solid */
+        .main-boundary {
+            border: 2px solid var(--accent-gold);
+            box-shadow: var(--glow-gold), inset 0 0 20px rgba(255, 202, 40, 0.1);
+            background-color: rgba(19, 26, 43, 0.7);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            text-shadow: var(--glow-white), 0 0 5px var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Core Structure Section */
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card-panel {
+            background: var(--panel-bg);
+            border: var(--border-style);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--glow-blue);
+            transition: all 0.3s ease;
+        }
+
+        .card-panel:hover {
+            border-color: var(--accent-gold);
+            box-shadow: var(--glow-gold);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
+            text-shadow: 0 0 10px rgba(255, 202, 40, 0.3);
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            text-shadow: var(--glow-white);
+        }
+
+        /* Grid System for Components */
+        .component-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .component-box {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .component-header-desc {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 15px;
+        }
+
+        .component-title {
+            color: #ffffff;
+            font-size: 1.6rem;
+            text-shadow: var(--glow-white);
+            margin-bottom: 10px;
+        }
+
+        .lead-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 10px;
+        }
+
+        .detailed-content {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .media-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed rgba(0, 210, 255, 0.3);
+        }
+
+        .media-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 2px solid var(--accent-blue);
+            box-shadow: var(--glow-blue);
+        }
+
+        .source-link {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            word-break: break-all;
+            transition: color 0.2s;
+        }
+
+        .source-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Tech Badges & Specs */
+        .tech-spec {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .pinout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .pin-item {
+            background: rgba(0,0,0,0.4);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        .highlight-gold {
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .highlight-blue {
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-boundary">
+        
+        <header>
+            <h1>Eksplorasi Komponen Komputer & Motherboard</h1>
+            <p>Arsitektur, Struktur Sistem, dan Fungsionalitas Hardware Modern</p>
+        </header>
+
+        <!-- Struktur Sistem Komputer -->
+        <section class="intro-section">
+            <div class="card-panel">
+                <h2>Struktur Utama Sistem Komputer</h2>
+                <p style="margin-bottom: 15px; color: #ffffff; font-weight: 500;">Sistem komputer terdiri atas empat pilar utama yang saling terintegrasi untuk mengeksekusi instruksi data secara presisi:</p>
+                <ul>
+                    <li><strong>Processor (CPU):</strong> Inti pengendali utama yang mengeksekusi seluruh instruksi program. Jika sistem hanya memiliki satu unit, maka mutlak disebut CPU.</li>
+                    <li><strong>Main Memory:</strong> Media penyimpanan data internal jangka pendek yang bersifat volatile, berfungsi menyimpan instruksi aktif yang sedang diakses oleh prosesor.</li>
+                    <li><strong>I/O Modules:</strong> Arsitektur modul interkoneksi yang menjembatani transfer data antara lingkungan internal komputer dengan perangkat eksternal/periferal.</li>
+                    <li><strong>System Interconnection:</strong> Struktur bus dan mekanisme komunikasi spesifik yang menghubungkan jalur data antara Processor, Main Memory, dan I/O Modules.</li>
+                </ul>
+            </div>
+            
+            <div class="card-panel">
+                <h2>Anatomi Layout Motherboard</h2>
+                <p style="margin-bottom: 15px; color: #ffffff; font-weight: 500;">Pemetaan komponen fisik terintegrasi (Labeling & Mapping) pada papan induk motherboard mainstream:</p>
+                <div style="font-size: 0.9rem; color: var(--text-color); display: grid; grid-template-columns: 1fr 1fr; gap: 5px 15px;">
+                    <div>• Northbridge (+ Heatsink)</div>
+                    <div>• IDE Connector (x2)</div>
+                    <div>• DRAM Memory Slot (x2)</div>
+                    <div>• 20-pin ATX Power Conn.</div>
+                    <div>• CPU Fan & Mounting</div>
+                    <div>• CPU Socket</div>
+                    <div>• Southbridge</div>
+                    <div>• PCI Slot (x5)</div>
+                    <div>• AGP Slot</div>
+                    <div>• CMOS Backup Battery</div>
+                    <div>• Integrated Peripherals</div>
+                    <div>• PS/2 Keyboard/Mouse</div>
+                    <div>• Serial & Parallel Port</div>
+                    <div>• USB & Ethernet</div>
+                    <div>• Audio Ports (3)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daftar Komponen Utama -->
+        <main class="component-grid">
+
+            <!-- 1. Konektor Power Supply -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">1. Konektor Power Supply</h3>
+                    <p class="lead-text">Sistem distribusi daya listrik utama yang mengalirkan energi dari power supply unit (PSU) menuju seluruh sirkuit elektronik terintegrasi pada papan induk motherboard.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Konektor power berupa susunan pin modular khusus yang menyambungkan sistem sirkuit Motherboard dengan pasokan daya dari power supply di dalam casing komputer. Pada era arsitektur Motherboard tipe AT, casing dan suplai daya yang dibutuhkan wajib bertipe AT yang terdiri atas dua blok header kabel terpisah yang dipasang secara berdampingan dengan kabel hitam (Ground) saling berorientasi di tengah. Sebaliknya, standar modern menggunakan format <strong>ATX</strong>, di mana seluruh kabel power disatukan dalam satu header solid yang presisi dan mengunci otomatis, mencegah risiko terbalik saat pemasangan.</p>
+                    
+                    <div class="media-block">
+                        <img src="konektor.jpeg" alt="Konektor Power Supply" width="250" height="150">
+                        <a href="https://allaboutxp.blogspot.com/2012/07/mengenal-power-supply-komputer-at-dan.html" target="_blank" class="source-link">Sumber Gambar: allaboutxp.blogspot.com</a>
+                    </div>
+
+                    <div class="tech-spec">
+                        <span class="highlight-gold">Analisis Karakteristik Voltase & Warna Kabel (Standardisasi Lifewire):</span>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>Arsitektur Tipe AT:</strong> YELLOW = +12V, RED = +5V, ORANGE = +3.3V, BLACK = Ground/0V.</li>
+                            <li><strong>Arsitektur Tipe ATX:</strong> Menambahkan jalur khusus seperti GREEN = Power On (PS-ON), PURPLE = Standby (+5VSB), BLUE = -12V, WHITE/GRAY = Power Good (PG).</li>
+                        </ul>
+                        <div style="margin-top: 12px; font-weight: bold; color: var(--accent-blue);">Konfigurasi Pinout ATX Standard:</div>
+                        <div class="pinout-grid">
+                            <div class="pin-item">Pin 1: +3.3V</div><div class="pin-item">Pin 2: +3.3V</div><div class="pin-item">Pin 3: Ground</div>
+                            <div class="pin-item">Pin 4: +5V</div><div class="pin-item">Pin 5: Ground</div><div class="pin-item">Pin 6: +5V</div>
+                            <div class="pin-item">Pin 7: Ground</div><div class="pin-item">Pin 8: PG</div><div class="pin-item">Pin 9: +5VSB</div>
+                            <div class="pin-item">Pin 10: +12V</div><div class="pin-item">Pin 11: +12V</div><div class="pin-item">Pin 12: +3.3V</div>
+                            <div class="pin-item">Pin 13: +3.3V</div><div class="pin-item">Pin 14: -12V</div><div class="pin-item">Pin 15: Ground</div>
+                            <div class="pin-item">Pin 16: PS-ON</div><div class="pin-item">Pin 17: Ground</div><div class="pin-item">Pin 18: Ground</div>
+                            <div class="pin-item">Pin 19: Ground</div><div class="pin-item">Pin 20: -5V</div><div class="pin-item">Pin 21: +5V</div>
+                            <div class="pin-item">Pin 22: +5V</div><div class="pin-item">Pin 23: +5V</div><div class="pin-item">Pin 24: Ground</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Socket atau Slot Prosesor -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">2. Socket atau Slot Prosesor</h3>
+                    <p class="lead-text">Dudukan khusus berkepadatan tinggi yang dirancang khusus sebagai antarmuka mekanis dan elektrikal untuk menghubungkan chip mikroprosesor dengan sistem motherboard.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Evolusi komparatif colokan prosesor mencatat peralihan teknologi yang masif. Model klasik menggunakan interkoneksi jenis <span class="highlight-blue">ZIF (Zero Insertion Force) Socket 7</span> yang bersifat universal bagi prosesor Intel, AMD, maupun Cyrix hingga batas performa clock 233 MHz. Seiring waktu, standardisasi bergeser ke Socket 370 milik Intel dan Socket A (untuk lini prosesor Athlon) milik AMD. Untuk form-factor, sempat pula digunakan interface berbentuk kartu ekspansi horizontal, yakni <span class="highlight-gold">Slot 1</span> untuk Intel Pentium II/III dan <span class="highlight-gold">Slot A</span> untuk arsitektur tandingan dari kubu AMD.</p>
+                    
+                    <div class="media-block">
+                        <img src="socket.jpeg" alt="Socket Processor" width="250" height="150">
+                        <a href="https://www.nesabamedia.com/apa-itu-socket-processor/" target="_blank" class="source-link">Sumber Gambar: nesabamedia.com</a>
+                    </div>
+
+                    <div class="tech-spec">
+                        <span class="highlight-gold">Kronologi & Garis Waktu Generasi Socket / LGA:</span>
+                        <ul style="margin-top: 10px; font-size: 0.9rem;">
+                            <li><strong>Socket 423 (Tahun 2000):</strong> Mengakomodasi Intel Pentium 4 generasi awal (Willamette core), FSB 400 MT/s, teknologi kemasan PGA 423 Desktop.</li>
+                            <li><strong>Socket 478 / N (Tahun 2001):</strong> Untuk Intel Pentium 4 & Celeron, clockspeed FSB 400-800 MT/s, arsitektur desktop dengan basis pin grid array.</li>
+                            <li><strong>Socket 479 (Tahun 2003):</strong> Didesain khusus untuk platform mobile/notebook (Pentium M dan Celeron M) dengan efisiensi daya tinggi.</li>
+                            <li><strong>LGA 775 / Pentium Socket T (Tahun 2004):</strong> Revolusi desain tanpa pin pada CPU (Land Grid Array) untuk Core 2 Duo, Core 2 Quad, dan Xeon, mendukung FSB eksternal hingga 1600 MHz.</li>
+                            <li><strong>LGA 1366 / Q1 Socket B (Tahun 2008):</strong> Segmen enthusiast / server awal untuk lini Core i7 (900 series) dan Xeon, mengintegrasikan interkoneksi QPI (Intel QuickPath Interconnect) sebesar 4.8 - 6.4 GT/s.</li>
+                            <li><strong>LGA 1156 / Q2 Socket H (Tahun 2009):</strong> Melayani segmen mainstream Intel Nehalem & Westmere dengan integrasi bus internal DMI.</li>
+                            <li><strong>LGA 1155 / Q1 Socket H2 (Tahun 2011):</strong> Dirancang untuk mikroarsitektur Sandy Bridge dan Ivy Bridge, mendukung PCIe lanes terintegrasi, konfigurasi L1 cache 64KB & L2 cache 256KB per core.</li>
+                            <li><strong>LGA 2011 / Q3 Socket R (Tahun 2011):</strong> Platform High-End Desktop (HEDT) dan Server (Sandy Bridge-E/EP & Ivy Bridge-E/EP), mengaktifkan akselerasi 40 jalur PCIe 3.0 serta arsitektur 4-Channel Memory controller.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Chipset -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">3. Chipset (Core Logic Architecture)</h3>
+                    <p class="lead-text">Arsitektur sirkuit logik utama motherboard yang bertindak sebagai jembatan kontroler data lalu lintas tinggi, menghubungkan CPU dengan subsistem memori dan periferal.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Chipset merupakan pusat kendali sirkuit elektronik yang mengarahkan koordinasi aliran data di seluruh bagian komputer. Secara arsitektur konvensional, kendali ini terbagi menjadi dua sirkuit mikrokontroler utama yang memiliki spesifikasi tugas berbeda:</p>
+                    
+                    <ul>
+                        <li><strong>Northbridge / MCH (Memory Controller Hub):</strong> Berfungsi mengendalikan komunikasi data internal berkecepatan ekstrim (high-speed data paths) antara unit CPU, modul RAM, dan bus kartu grafis utama (AGP / PCI Express). Komponen ini secara mutlak menentukan batas kapasitas, kecepatan maksimum, serta tipe memori yang bisa dipasangkan di sistem.</li>
+                        <li><strong>Southbridge / ICH (I/O Controller Hub):</strong> Berfungsi menangani periferal berkecepatan lebih rendah yang berinteraksi langsung dengan I/O eksternal dan manusia, seperti mengontrol bus penyimpanan IDE/SATA, interkoneksi USB, slot PCI standar, sistem audio terintegrasi, kontrol keyboard, mouse, serta fungsi manajemen daya (Power Management).</li>
+                    </ul>
+
+                    <div class="media-block">
+                        <img src="chipset.jpeg" alt="Northbridge and Southbridge Chipset" width="250" height="150">
+                        <a href="http://techintelligenceindia.blogspot.com/2012/06/northbridge-and-southbridge.html" target="_blank" class="source-link">Sumber Gambar: techintelligenceindia.blogspot.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. System-on-Chip -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">4. System-on-Chip (SoC) & IC Terintegrasi</h3>
+                    <p class="lead-text">Integrasi tingkat tinggi yang memadukan sirkuit Northbridge, Southbridge, grafis, hingga kontroler audio ke dalam satu cetakan chip semikonduktor tunggal.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Evolusi manufaktur silikon melahirkan konsep <span class="highlight-blue">System-on-Chip (SoC)</span>, di mana seluruh fungsionalitas komponen hardware diringkas ke dalam sekeping sirkuit terpadu terintegrasi tinggi secara on-board. Sistem ini meningkatkan efisiensi daya secara radikal, mempercepat komunikasi data antar-blok internal, serta memangkas dimensi fisik motherboard secara dramatis. Sebagai contoh visualisasi konkrit, produsen chip global seperti Realtek menyematkan Integrated Circuit mikro (contoh kode chip: ALC 888) untuk menangani subsistem High Definition Audio berkualitas tinggi secara langsung tanpa memerlukan kartu ekspansi tambahan.</p>
+                    
+                    <div class="media-block">
+                        <img src="chip.jpeg" alt="System on Chip" width="250" height="150">
+                        <a href="https://navori.com/blog/what-is-a-system-on-a-chip/" target="_blank" class="source-link">Sumber Gambar: navori.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Socket Memori -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">5. Socket Memori (RAM Slot)</h3>
+                    <p class="lead-text">Konektor linier berslot ganda yang mengamankan letak papan sirkuit memori utama untuk jalur akses acak data berkecepatan tinggi.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Secara mendasar, arsitektur memori dibagi dalam dua kategori ilmiah: <strong>Static RAM (SRAM)</strong> yang menggunakan jaringan transistor kompleks membentuk sirkuit flip-flop untuk penyimpanan data 1-bit konstan berkecepatan tinggi tanpa penyegaran listrik periodik, serta <strong>Dynamic RAM (DRAM)</strong> yang memadukan satu transistor miniatur dengan satu kapasitor ultra-kompak untuk kerapatan kapasitas maksimal di mana data harus disegarkan secara kontinyu.</p>
+                    <p>Secara fisik, slot memori berovolusi dari form-factor SIMM kuno (72-pin untuk EDO/SDRAM) menuju standar DIMM (168-pin hingga 288-pin) yang dilengkapi sekat fisik satu arah (notched guidelines) untuk mencegah kesalahan pemasangan orientasi RAM terbalik.</p>
+                    
+                    <div class="media-block" style="flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                        <div style="text-align: center;">
+                            <img src="memori.jpeg" alt="Memory Card Close Up" width="250" height="150">
+                            <br><a href="https://www.alamy.com" target="_blank" class="source-link">Sumber: alamy.com</a>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="memori(1).jpeg" alt="Server Main Memory Node" width="250" height="150">
+                            <br><a href="https://www.servethehome.com" target="_blank" class="source-link">Sumber: servethehome.com</a>
+                        </div>
+                    </div>
+
+                    <div class="tech-spec">
+                        <span class="highlight-gold">Kronologi Evolusi Kecepatan & Efisiensi Generasi RAM:</span>
+                        <ul style="margin-top: 10px; font-size: 0.9rem;">
+                            <li><strong>SDRAM (Era 1990-an):</strong> Berjalan sinkron dengan clock bus sistem, varian populer PC-100 dan PC-133MHz digunakan pada platform Intel Pentium III.</li>
+                            <li><strong>DDR (Double Data Rate):</strong> Menggandakan throughput data dengan mentransfer data pada tepi pulsa naik dan turun (clock edge). Penamaan komersial dilipatgandakan untuk taktik pasar (misal DDR-200 berjalan asli pada clock 100MHz).</li>
+                            <li><strong>DDR2:</strong> Mengadopsi peningkatan lebar prefetch internal serta pemangkasan konsumsi voltase operasional, menjadi standar utama di era Pentium 4 Prescott dan Core 2 Duo.</li>
+                            <li><strong>DDR3 (2007):</strong> Memangkas konsumsi daya hingga 30% dibanding DDR2, mengandalkan varian clock mulai dari DDR3-1066 hingga DDR3-2000.</li>
+                            <li><strong>DDR4 (2014):</strong> Mengoptimalkan efisiensi energi dengan voltase lebih rendah, kerapatan chip masif (mencapai 16GB per keping tunggal), dan clockspeed tinggi berkisar 2133MHz - 3200MHz.</li>
+                            <li><strong>DDR5 (Generasi Modern):</strong> Menghadirkan lompatan performa revolusioner:
+                                <br><em>a. Kapasitas Masif:</em> Mampu menampung lebih dari 128GB per keping RAM tunggal.
+                                <br><em>b. Akselerasi Multitasking:</em> Bandwidth masif mengeliminasi bottleneck saat pengolahan grafis 3D berat bersamaan dengan komputasi latar belakang.
+                                <br><em>c. Lebar Bandwidth Ganda:</em> Menggandakan interkoneksi transfer data jauh melampaui limitasi arsitektur DDR4.
+                                <br><em>d. Channel Efficiency Optimal:</em> Desain internal membagi modul RAM ke dalam dua sub-channel 32-bit independen untuk efisiensi akses data acak.
+                            </li>
+                        </ul>
+                        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">
+                            Catatan Jenis Pin Fisik Bersejarah: 30pin SIMM, 72pin SIMM, 168pin DIMM, 144pin SO-DIMM DDR1, 184pin DDR1, 184pin RIMM, 172pin MICRODIMM, 200pin SO-DIMM DDR2, 240pin DDR2, 204pin SO-DIMM DDR3, 240pin DDR3.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Konektor Floppy dan IDE / SATA -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">6. Konektor Floppy, IDE, dan Standardisasi SATA</h3>
+                    <p class="lead-text">Antarmuka khusus penyimpanan internal yang menghubungkan subsistem motherboard dengan media penyimpanan drive magnetik, drive optik, dan modul solid-state drive.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Pada teknologi lawas, pengalamatan media penyimpanan diatur oleh antarmuka paralel IDE (Integrated Drive Electronics) yang membagi saluran transmisi menjadi dua jalur utama:</p>
+                    <ul>
+                        <li><strong>Primary IDE:</strong> Saluran utama untuk memprioritaskan komunikasi data dengan media boot utama (Primary Master Drive) dan drive sekunder internal.</li>
+                        <li><strong>Secondary IDE:</strong> Jaluran tambahan pendukung yang difungsikan untuk mengoneksikan piranti pembantu berstatus hamba (Slave) seperti CD-ROM drive maupun harddisk penyimpanan cadangan.</li>
+                    </ul>
+                    <p>Evolusi modern menggantikan jalur paralel PATA/IDE 1980-an dengan arsitektur <strong>SATA (Serial Advanced Technology Attachment)</strong>. SATA menawarkan keunggulan berupa penggunaan kabel data ultra-tipis untuk meningkatkan sirkulasi udara di dalam casing, serta performa throughput data yang jauh lebih tinggi.</p>
+                    
+                    <div class="media-block">
+                        <img src="floppy.jpeg" alt="IDE and SATA Connectors" width="250" height="150">
+                        <a href="https://pictacademy.com/ide-connectors-and-sata-connectors-on-motherboards/" target="_blank" class="source-link">Sumber Gambar: pictacademy.com</a>
+                    </div>
+
+                    <div class="tech-spec">
+                        <span class="highlight-gold">Fitur Superioritas Arsitektur SATA Modern:</span>
+                        <p style="margin-top: 5px;"><strong>Hot Swapping:</strong> Mekanisme mutakhir yang mengizinkan pelepasan atau pemasangan drive penyimpanan eksternal/internal secara langsung tanpa perlu mematikan (shutdown) sistem komputer terlebih dahulu.</p>
+                        <p style="margin-top: 5px;"><strong>Native Command Queueing (NCQ):</strong> Algoritma cerdas yang mendongkrak performa drive penyimpanan dengan menjadwalkan ulang dan mengurutkan eksekusi perintah baca/tulis (read/write commands) secara efisien guna meminimalkan gerakan mekanis head pencari data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. BIOS Chip & Baterai CMOS -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">7. Basic Input Output System (BIOS) Chip</h3>
+                    <p class="lead-text">Chip memori non-volatile (Firmware) penyimpan kode instruksi inisialisasi tingkat rendah untuk menguji kesiapan hardware sebelum memuat sistem operasi.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Secara harfiah, BIOS merupakan jantung inisialisasi yang memberikan instruksi awal bagi kehidupan komputer saat tombol power ditekan. Firmware internal di dalam chip BIOS bertindak sebagai penerjemah dan perantara komunikasi tingkat rendah antara sirkuit hardware dengan Operating System (OS). Melalui prosedur inisialisasi awal yang dikenal dengan sebutan <strong>BIOS Runtime Services</strong>, chip ini mengatur penyelarasan seluruh fungsi input-output dasar komputer seperti deteksi keyboard, urutan media booting, dan pemetaan alokasi hardware internal secara terorganisir.</p>
+                    
+                    <div class="media-block">
+                        <img src="bios.jpeg" alt="BIOS Chip on Motherboard" width="250" height="180">
+                        <a href="https://wahyuprstya.blogspot.com/2019/09/tianhe-2-sang-super-komputer-tercepat.html" target="_blank" class="source-link">Sumber Gambar: wahyuprstya.blogspot.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Slot Ekspansi Tambahan -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">8. Slot Ekspansi Tambahan (PCI, PCIe, AGP)</h3>
+                    <p class="lead-text">Arsitektur slot interkoneksi bus eksternal modular untuk menancapkan berbagai kartu kartu fungsionalitas tambahan guna mengekstensi kapabilitas komputer.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Guna memberikan fleksibilitas fungsional, motherboard menyediakan beberapa arsitektur slot ekspansi modular berkecepatan tinggi:</p>
+                    <ul>
+                        <li><strong>Slot PCI Express x16:</strong> Jalur interkoneksi bandwidth tinggi berseri multipel yang dialokasikan khusus untuk kartu grafis (VGA Card) modern guna menangani kalkulasi rendering visual 3D secara real-time.</li>
+                        <li><strong>Slot PCI Express x1:</strong> Jalur ekspansi berskala kompak, digunakan untuk memasang periferal internal tambahan berkecepatan rendah seperti kartu suara (Sound Card), modul Wi-Fi internal, atau kartu ekspansi port USB tambahan.</li>
+                        <li><strong>Slot AGP (Accelerated Graphics Port):</strong> Port grafis ikonik generasi pendahulu sebelum eksistensi PCI Express. Didesain khusus untuk memisahkan jalur data kartu video dari bus PCI standar yang lambat guna mempercepat komunikasi visual langsung ke CPU.</li>
+                    </ul>
+                    
+                    <div class="media-block">
+                        <img src="pci.jpeg" alt="Expansion Slots" width="250" height="150">
+                        <a href="https://vitaammalias.blogspot.com/2013/10/nama-dan-fungsi-bagian-motherboard.html" target="_blank" class="source-link">Sumber Gambar: vitaammalias.blogspot.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Konektor Penghubung (Integrated Peripherals) -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">9. Konektor Penghubung (Connectors For Integrated Peripherals)</h3>
+                    <p class="lead-text">Panel antarmuka port input-output fisik yang terintegrasi di bagian belakang motherboard untuk menghubungkan unit komputer dengan lingkungan periferal luar.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Komponen panel I/O belakang ini mengintegrasikan berbagai standardisasi port komunikasi data lintas generasi untuk mempermudah kontrol interaksi hardware eksternal:</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <p><strong>• Port Paralel (LPT1/LPT2):</strong> Menggunakan transmisi data paralel byte-by-byte, populer di era klasik untuk menghubungkan unit printer besar atau scanner sebelum standardisasi universal USB.</p>
+                            <p><strong>• Port Serial (Com 1, Com 2):</strong> Jalur transfer data serial bit-by-bit berkecepatan rendah, kini telah usang dan sangat jarang diimplementasikan pada komputer konsumen modern.</p>
+                            <p><strong>• Port AT / PS2:</strong> Konektor sirkular berkode warna standar hijau/ungu, didedikasikan untuk menyambungkan perangkat mouse dan keyboard konvensional.</p>
+                            <p><strong>• Port USB (Universal Serial Bus):</strong> Standar bus universal super cepat masa kini, menggantikan port paralel dan serial untuk menghubungkan flashdisk, printer modern, kamera digital, hingga harddisk eksternal.</p>
+                        </div>
+                        <div>
+                            <p><strong>• Port VGA:</strong> Port analog D-Sub 15-pin standar yang menyalurkan sinyal video analog mentah secara langsung dari sirkuit kartu grafis menuju layar monitor.</p>
+                            <p><strong>• Port DVI (Digital Visual Interface):</strong> Antarmuka transmisi video digital terenkripsi yang dikembangkan oleh DDWG, mengoptimalkan kejernihan visual pada monitor LCD/digital panel.</p>
+                            <p><strong>• Port HDMI (High-Definition Multimedia Interface):</strong> Port kompak modern yang mampu mentransmisikan data audio digital multi-channel dan video resolusi ultra-tinggi secara simultan lewat satu kabel tunggal.</p>
+                        </div>
+                    </div>
+
+                    <div class="media-block">
+                        <img src="konektor penghubung.jpeg" alt="Integrated Peripherals Ports" width="250" height="150">
+                        <a href="https://www.rekomend.id/pengertian-konektor-connector-dan-jenis-jenisnya/" target="_blank" class="source-link">Sumber Gambar: rekomend.id</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Battery CMOS -->
+            <div class="component-box">
+                <div class="component-header-desc">
+                    <h3 class="component-title">10. Baterai CMOS (Complimentary Metal Oxide Semiconductor)</h3>
+                    <p class="lead-text">Sel baterai lithium DC independen yang berfungsi menjaga kontinuitas aliran daya sirkuit internal clock dan memori penyimpanan konfigurasi firmware komputer.</p>
+                </div>
+                <div class="detailed-content">
+                    <p>Baterai CMOS (umumnya bertipe koin Lithium CR2032) bertindak sebagai penyokong daya konstan berkesinambungan bagi chip CMOS saat sistem komputer kehilangan pasokan listrik eksternal utama. Tiga fungsi vitalnya meliputi:</p>
+                    <ul>
+                        <li>Menyalurkan daya konstan bagi chip IC RTC (Real-Time Clock) agar perhitungan internal waktu, hari, dan tanggal pada komputer tetap sinkron dan ter-update secara akurat secara terus-menerus.</li>
+                        <li>Mempertahankan memori penyimpanan konfigurasi kustomisasi sirkuit BIOS Setup Utility agar tidak kembali ke pengaturan default pabrik setiap kali komputer dimatikan.</li>
+                        <li>Menyimpan konfigurasi parameter hardware periferal on-board lainnya, termasuk status alokasi sirkuit integrated sound card.</li>
+                    </ul>
+
+                    <div class="media-block">
+                        <img src="battery.jpeg" alt="CMOS Battery" width="250" height="150">
+                        <a href="https://www.pchardwarepro.com/en/How-to-replace-the-CMOS-battery-of-a-NAS-step-by-step/" target="_blank" class="source-link">Sumber Gambar: pchardwarepro.com</a>
+                    </div>
+
+                    <div class="tech-spec" style="border-color: rgba(255, 202, 40, 0.3); background: rgba(255, 202, 40, 0.03);">
+                        <span class="highlight-gold">Metode Diagnosa Awal Kerusakan Malfungsi CMOS:</span>
+                        <p style="margin-top: 8px;">Jika baterai CMOS mengalami pelemahan voltase secara kritis di bawah batas ambang nominal, layar monitor akan menampilkan pesan peringatan error sistem (seperti <em>"CMOS Checksum Error"</em> atau instruksi wajib menekan tombol <strong>F2 / F1</strong> untuk melanjutkan booting) setiap kali komputer diaktifkan. Gejala fatal lainnya ditandai dengan hilangnya sinkronisasi waktu operasional atau bahkan kegagalan sistem menampilkan output visual (No Display). Solusi utama dilakukan dengan melakukan penggantian fisik sel baterai CMOS baru yang setipe, serta memastikan kebersihan pin dudukan batre agar tidak menghambat aliran daya elektrikal.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Ensiklopedia Arsitektur Komputer Mandiri. Didesain Elegan dengan Karakteristik Industrial & Cybernetic System.</p>
+        </footer>
+
+    </div>
+</div>
+
+</body>
+</html>
