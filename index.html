@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komponen Sistem Komputer & Laptop</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --primary: #1f6feb;
+            --accent: #f1c40f;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            border-bottom: 2px solid var(--accent);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--text-main);
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        header h1 span {
+            color: var(--accent);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .intro-box {
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+        }
+
+        .intro-box h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .intro-item {
+            background: rgba(255,255,255,0.03);
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .intro-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .grid-components {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                flex-direction: row;
+            }
+            .card-img-wrapper {
+                width: 300px;
+                min-width: 300px;
+                border-right: 1px solid var(--border-color);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(31, 111, 235, 0.15);
+            border-color: var(--primary);
+        }
+
+        .card-img-wrapper {
+            background: #090c10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .component-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .component-english {
+            font-size: 1rem;
+            color: var(--accent);
+            font-style: italic;
+            font-weight: normal;
+            background: rgba(241, 196, 15, 0.1);
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(241, 196, 15, 0.2);
+        }
+
+        .section-block {
+            margin-top: 15px;
+        }
+
+        .section-block h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(31, 111, 235, 0.2);
+            padding-bottom: 2px;
+        }
+
+        .section-block p, .section-block ul {
+            font-size: 0.95rem;
+            color: #c9d1d9;
+            text-align: justify;
+        }
+
+        .section-block ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .section-block li {
+            margin-bottom: 4px;
+        }
+
+        .trouble-box {
+            background: rgba(231, 76, 60, 0.05);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .trouble-box h4 {
+            color: #ff6b6b;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trouble-box p {
+            font-size: 0.9rem;
+            color: #f1f2f6;
+        }
+
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+            background: rgba(255,255,255,0.02);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .spec-item {
+            font-size: 0.85rem;
+        }
+
+        .spec-item strong {
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Komponen Utama <span>Sistem Komputer</span></h1>
+        <p>Eksplorasi Komprehensif Deskripsi, Fungsi, Kerusakan, Solusi, dan Perkembangan Teknologi Varian</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Struktur Sistem Komputer -->
+        <div class="intro-box">
+            <h2>Struktur Sistem Komputer & Arsitektur Utama</h2>
+            <p>Sistem komputer terdiri dari empat komponen struktural utama yang saling terhubung untuk menjalankan pemrosesan data secara digital:</p>
+            <div class="intro-grid">
+                <div class="intro-item">
+                    <strong>1. Processor (CPU)</strong>
+                    Pusat pengendali dan eksekusi instruksi program komputer.
+                </div>
+                <div class="intro-item">
+                    <strong>2. Main Memory</strong>
+                    Penyimpan data dan instruksi sementara yang cepat untuk diakses CPU.
+                </div>
+                <div class="intro-item">
+                    <strong>3. I/O Modules</strong>
+                    Menjembatani pemindahan data antarkomputer dan perangkat eksternal.
+                </div>
+                <div class="intro-item">
+                    <strong>4. System Interconnection</strong>
+                    Struktur bus/mekanisme yang menghubungkan CPU, memori, dan I/O.
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-components">
+
+            <!-- 1. MOTHERBOARD -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="motherboard.jpg" alt="Motherboard">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        Motherboard
+                        <span class="component-english">Mainboard / Motherboard</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>Papan sirkuit cetak utama (PCB) yang berfungsi sebagai tulang punggung komputer, menyediakan jalur komunikasi elektrik (bus) yang menghubungkan seluruh komponen internal seperti CPU, RAM, ROM, serta modul I/O eksternal.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Label & Fitur Utama Pemetaan</h4>
+                        <p>Northbridge (dengan heatsink), IDE Connector (x2), DRAM Memory Slot (x2), 20-pin ATX Power Connector, CPU Fan Mounting Points, CPU Socket, Southbridge, PCI Slot (x5), AGP Slot, CMOS Battery, Port Terintegrasi (PS/2, Serial, Paralel, USB, Ethernet, Audio).</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Ekspansi & Konektivitas Terintegrasi</h4>
+                        <ul>
+                            <li><strong>Slot PCI Express x16 & AGP:</strong> Tempat khusus memasang kartu VGA/Grafis berkecepatan tinggi untuk mereduksi beban pemrosesan visual CPU.</li>
+                            <li><strong>Slot PCI Express x1:</strong> Untuk kartu peripheral tambahan (Sound Card, LAN Card eksternal).</li>
+                            <li><strong>Interface Port:</strong> Port Paralel (LPT) & Serial (COM) untuk perangkat lawas, Port AT/PS2 (Mouse/Keyboard), Port USB (Universal modern), serta output display (VGA, DVI, HDMI).</li>
+                        </ul>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Komputer mati total, sering restart mendadak, atau kapasitor menggelembung (korosi elektrik).</p>
+                        <p><strong>Solusi:</strong> Lakukan pengecekan fisik modul kapasitor (re-kapasitansi), bersihkan debu korosif dengan cairan cleaner kontak elektro, atau ganti mainboard jika terjadi kerusakan sirkuit jalur bus utama.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kapasitas & Ukuran:</strong> ATX, Micro-ATX, Mini-ITX.</div>
+                            <div class="spec-item"><strong>Kualitas & Kecepatan:</strong> Jalur Bus PCIe Generasi 4.0/5.0 dengan transfer rate hingga puluhan GB/s per lajur.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. PROCESSOR -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="processor.jpg" alt="Processor">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        Processor
+                        <span class="component-english">Central Processing Unit (CPU)</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>Otak utama dari sistem komputer yang bertugas mengeksekusi instruksi, melakukan kalkulasi aritmatika dan logika (ALU), serta mengendalikan aliran data sistem secara keseluruhan.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Evolusi Soket & Dudukan</h4>
+                        <p>Dudukan prosesor berkembang pesat dari model lama ZIF Socket 7 (kompatibel Intel/AMD/Cyrix generasi awal), Socket 370, hingga transisi ke arsitektur modern seperti LGA 775 (Pentium T), LGA 1366, LGA 1155/1156 (Sandy/Ivy Bridge), dan LGA 2011 dengan dukungan quad-channel memori serta lajur PCIe terintegrasi langsung pada CPU.</p>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Overheating (panas berlebih), menyebabkan sistem mendadak <i>freeze</i> atau <i>thermal shutdown</i> otomatis.</p>
+                        <p><strong>Solusi:</strong> Ganti thermal pasta secara berkala, bersihkan heatsink fan dari sumbatan debu, atau tingkatkan ke sistem pendingin cair (Liquid Cooler) berkualitas tinggi.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kecepatan & Inti:</strong> Dari Single-Core rentang MHz hingga Multi-Core (skala GHz) dengan Cache L1, L2, L3 yang masif per core.</div>
+                            <div class="spec-item"><strong>Kualitas Desain:</strong> Arsitektur mikro nanometer (nm) yang makin mengecil (misal 3nm-7nm) untuk efisiensi daya maksimum.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. RAM -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="ram.jpg" alt="RAM">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        RAM
+                        <span class="component-english">Random Access Memory</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>Memori utama komputer bersifat volatile (data hilang saat daya mati) berbasis Dynamic RAM yang menggunakan kombinasi ultra-kompak transistor dan kapasitor untuk menyimpan data instruksi aktif yang sedang diolah oleh CPU secara instan.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Evolusi Generasi & Varian</h4>
+                        <ul>
+                            <li><strong>SDRAM & DDR:</strong> Menggantikan pin SIMM (30/72 pin) lama ke DIMM. DDR melipatgandakan kecepatan clock asli (DDR-200 berjalan pada clock fisik 100MHz).</li>
+                            <li><strong>DDR2 & DDR3:</strong> Standar era Core 2 Duo/Quad dan i-series awal dengan peningkatan frekuensi transfer data yang signifikan.</li>
+                            <li><strong>DDR4 & DDR5:</strong> DDR4 (2133-3200MHz) menawarkan kerapatan tinggi. DDR5 melompat drastis dengan kapasitas per keping teoritis melampaui 128GB, efisiensi dual-channel internal per modul, bandwidth dua kali lipat, dan efisiensi daya ekstrim untuk kebutuhan multitasking tinggi.</li>
+                        </ul>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Komputer mengeluarkan bunyi BIP berulang saat dinyalakan, tidak tampil gambar di monitor (No Display), atau terjadi Blue Screen of Death (BSOD).</p>
+                        <p><strong>Solusi:</strong> Lepaskan modul RAM, bersihkan pin tembaga menggunakan penghapus pensil, pindahkan ke slot alternatif, atau ganti modul jika terdeteksi error permanen via uji memtest86.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kapasitas:</strong> Dari KB/MB pada era SIMM kuno hingga >64GB per single modul masa kini.</div>
+                            <div class="spec-item"><strong>Kecepatan:</strong> Bandwidth lebar dengan clock speed menyentuh rentang 4800MHz - 8000+MHz pada DDR5.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ROM -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="rom.jpg" alt="ROM">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        ROM & Storage Interface
+                        <span class="component-english">Read Only Memory / Mass Storage</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>ROM berfungsi menyimpan firmware dasar secara non-volatile (permanen). Dalam arsitektur penyimpanan massal modern yang terhubung ke interface motherboard, fungsi ini bersandingan dengan sistem pengelolaan hard drive, SSD, maupun drive optik.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Transisi Interface: IDE ke SATA</h4>
+                        <p>Konektor IDE (Primary/Secondary) lawas mengandalkan transfer paralel data yang terbatas dan kaku. Standar ini digantikan secara total oleh <strong>SATA (Serial ATA)</strong> yang membawa keunggulan mutlak berupa kecepatan transfer data tinggi, fitur <i>Hot-Swapping</i> (mengganti perangkat tanpa mematikan komputer), serta dukungan teknologi <i>Native Command Queueing (NCQ)</i> untuk optimasi urutan perintah baca/tulis data pada drive.</p>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Sistem operasi gagal memuat data (Bootable device not found), corrupt firmware, atau siklus baca/tulis media penyimpanan menurun tajam.</p>
+                        <p><strong>Solusi:</strong> Lakukan peremajaan kabel interface SATA, lakukan flashing/update firmware ROM berkala, atau migrasikan media penyimpanan mekanis (HDD) ke teknologi berbasis Solid State Drive (SSD).</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kapasitas:</strong> Chip EEPROM skala Megabit; Media storage modern mencapai rentang Terabyte (TB).</div>
+                            <div class="spec-item"><strong>Kecepatan:</strong> Dari pita lebar paralel IDE lambat menuju interface SATA III (6 Gbps) hingga NVMe PCIe Gen5 (>14,000 MB/s).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. BIOS CHIP & CMOS -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="cmos.jpg" alt="CMOS">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        BIOS Chip & Baterai CMOS
+                        <span class="component-english">Basic Input Output System & CMOS Battery</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p><strong>BIOS:</strong> Chip firmware penyedia instruksi tingkat rendah sebagai interface antara hardware dengan OS, mengontrol proses inisialisasi booting awal (POST).</p>
+                        <p><strong>Baterai CMOS:</strong> Sumber daya baterai koin independen yang menyuplai energi konstan bagi chip CMOS agar konfigurasi parameter sistem, jam internal real-time clock (IC RTC), serta pengaturan hardware terintegrasi tidak ter-reset saat suplai listrik utama padam.</p>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Muncul peringatan error "CMOS Checksum Error", jam/tanggal komputer selalu kembali ke tahun jadul setiap PC dinyalakan, atau kegagalan simpan konfigurasi BIOS (harus tekan F2/F1 terus menerus).</p>
+                        <p><strong>Solusi:</strong> Lakukan pergantian unit baterai koin CMOS tipe CR2032 dengan yang baru, pastikan kedudukan baterai terpasang presisi di klip penahan motherboard.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kualitas Firmware:</strong> Evolusi dari BIOS teks konvensional berkapasitas rendah menuju teknologi UEFI (Unified Extensible Firmware Interface) modern ber-GUI interaktif dan kaya fitur keamanan (Secure Boot).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. POWER SUPPLY -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="power supply.jpg" alt="Power Supply">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        Power Supply
+                        <span class="component-english">Power Supply Unit (PSU)</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>Komponen penyuplai daya yang mengubah arus bolak-balik (AC) tegangan tinggi dari jala listrik menjadi arus searah (DC) voltase rendah (+3.3V, +5V, +12V, -12V) sesuai dengan spesifikasi kebutuhan energi komponen komputer.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Spesifikasi Pinout AT vs ATX</h4>
+                        <ul>
+                            <li><strong>Tipe AT (Legacy):</strong> Menggunakan dua konektor terpisah yang ditancapkan bersisian (Kabel Kuning = 12v, Merah = 5v, Hitam = Ground/0v, Oranye = 3.3v).</li>
+                            <li><strong>Tipe ATX (Modern):</strong> Menggunakan satu block header utuh terpadu pinout (20-pin hingga 24-pin) dilengkapi jalur sinyal canggih seperti PS-ON (Power Supply On untuk manajemen software) dan +5VSB (Standby Voltage).</li>
+                        </ul>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Fluktuasi tegangan drop (PC mendadak restart saat beban kerja tinggi/gaming), atau PSU mati total akibat lonjakan listrik eksternal.</p>
+                        <p><strong>Solusi:</strong> Gunakan UPS/Stabilizer eksternal untuk proteksi arus, lakukan pengujian jumper manual pin PS-ON (hijau) ke ground (hitam) untuk tes kelayakan, dan selalu gunakan PSU bersertifikasi efisiensi tinggi (80 Plus).</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kapasitas Daya:</strong> Dari 200W rentang era AT, kini mencapai 850W - 1600W+ untuk sistem high-end gaming/server.</div>
+                            <div class="spec-item"><strong>Kualitas & Varian:</strong> Manajemen kabel Modular/Semi-Modular serta kepatuhan standar ATX 3.0 dengan konektor native PCIe 5.0 (12VHPWR).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. CHIPSET -->
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="chipset.jpg" alt="Chipset">
+                </div>
+                <div class="card-content">
+                    <div class="component-title">
+                        Chipset
+                        <span class="component-english">Motherboard Chipset / SoC</span>
+                    </div>
+                    <div class="section-block">
+                        <h4>Deskripsi & Fungsi</h4>
+                        <p>Sekelompok sirkuit terpadu (IC) cerdas yang bertindak sebagai jembatan lalu lintas data internal utama, mengontrol komunikasi performa tinggi dan peripheral eksternal komputer.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Arsitektur Klasik vs Arsitektur Modern</h4>
+                        <ul>
+                            <li><strong>Northbridge (MCH / Memory Controller Hub):</strong> Mengatur jalur data kritis super cepat ekstrim antara CPU, RAM, dan kartu grafis (AGP/PCIe).</li>
+                            <li><strong>Southbridge (ICH / I/O Controller Hub):</strong> Mengendalikan interaksi peripheral dengan kecepatan bus lebih lambat seperti kontroler IDE/SATA, USB, audio, LAN, mouse, keyboard, dan power management.</li>
+                            <li><strong>System-on-Chip (SoC):</strong> Konsep modern yang mereduksi dan melebur fungsi Northbridge dan Southbridge langsung masuk bersatu di dalam die prosesor tunggal guna memangkas latensi, menghemat ruang, serta meningkatkan efisiensi komputasi portabel (seperti modul audio on-board Realtek ALC dan kartu VGA terintegrasi).</li>
+                        </ul>
+                    </div>
+                    <div class="trouble-box">
+                        <h4>⚠️ Umum Kerusakan & Solusi</h4>
+                        <p><strong>Masalah:</strong> Chipset mengalami <i>overheat</i> parah berujung pada hilangnya deteksi fungsionalitas I/O terintegrasi secara acak (port USB mati mendadak, audio hilang).</p>
+                        <p><strong>Solusi:</strong> Optimalkan sirkulasi udara casing komputer, pasang thermal pad baru di bawah heatsink pasif penutup chipset, atau gunakan pendingin kipas kecil tambahan.</p>
+                    </div>
+                    <div class="section-block">
+                        <h4>Perkembangan Variasi</h4>
+                        <div class="tech-specs">
+                            <div class="spec-item"><strong>Kualitas & Fitur:</strong> Chipset modern (seperti seri Intel Z/B/H atau AMD X/B) menentukan kapabilitas fitur overclocking, batas lajur PCIe maksimun, serta jumlah port USB berkecepatan tinggi yang dapat diakomodasi.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Direktori Ensiklopedia Komponen Komputer & Laptop Elegance. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
